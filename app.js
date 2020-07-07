@@ -27,6 +27,17 @@ const weapons = [
     icon: "assets/Devotion_Icon.png",
     card: "assets/d_card.png",
 },
+{name:'G7 Scout', type:'light', bullets: `Rate of Fire: 273 RPM `, clipCap: "Clip Capacity: 10",
+    pros: `Decent medium range potential.
+    High burst damage with the Double Tap Trigger.svg Double Tap Trigger Hop-Up.
+    Great for contesting snipers.`,
+    cons:`1.75× headshot multiplier.
+    Glowing iron-sight may obscure vision for some players.
+    At closer distances, threatened by SMGs / Shotguns.
+    At longer distances, the slow bullet traveling speed makes it harder to hit enemies.`,
+    icon: "assets/G7_Scout_Icon.png",
+    card:"assets/g7_card.png",
+},
 {name:'L-Star', type:'Energy Gun', bullets: `Rate of Fire: 600 RPM `, clipCap: "Clip Capacity: unlimited",
     pros:`2× headshot multiplier.
     Has high damage and fire rate.
@@ -43,6 +54,18 @@ const weapons = [
     icon: "assets/L-Starw_Icon.png",
     card: "assets/ls_card.png",
 },
+{name:'RE-45', type:'light', bullets: `Rate of Fire: 750 RPM `, clipCap: "Clip Capacity: 16",
+    pros: `Fully automatic.
+    A rather tight bullet spread.
+    Small weapon which allows for fast movement while aiming.
+    Easy to find.
+    This pistol can be used as a mini R-99 due to its fast fire rate.`,
+    cons:`Small magazine capacity for a full-auto weapon.
+    Does not zoom in at all when ADSing with ironsights
+    1× headshot multiplier at 38+ meters.`,
+    icon: "assets/Re_45_Icon.png",
+    card:"assets/re_card.png",
+},
 {name:'Triple Take', type:'Sniper', bullets: `Rate of Fire: 672 RPM `, clipCap: "Clip Capacity: 5",
     pros: `2× headshot multiplier.
     High damage per shot for an assault rifle.
@@ -56,6 +79,19 @@ const weapons = [
     The charged shot beam with the Selectfire Receiver has damage falloff at 75-225+ meters.`,
     icon: "assets/Triple_Take_Icon.png",
     card: "assets/tt_card.png",
+},
+{name:'P2020', type:'light', bullets: `Rate of Fire: 430 RPM `, clipCap: "Clip Capacity: 10",
+    pros:`A rather tight bullet spread.
+    Small weapon which allows for fast movement while aiming.
+    Semi-Auto style allows for quick firing speed as fast as you can pull the trigger.
+    Very fast reload.
+    Accurate when hip-firing and moving.
+    High unshielded damage with the Hammerpoint Rounds.svg Hammerpoint Rounds Hop-Up.`,
+    cons:`Low damage per shot.
+    1× headshot multiplier at 38+ meters.
+    Terrible armor penetration.`,
+    icon: "assets/P2020_Icon.png",
+    card:"assets/p2_card.png",
 },
 {name:'r-99', type:'light', bullets: `Rate of Fire: 1080 RPM `, clipCap: "Clip Capacity: 20",
     pros: `2× headshot multiplier. High bullet velocity, third highest in class.
@@ -129,7 +165,7 @@ console.log(weapons[1].card)
 const $button = $('button');
 
 let displayOrder = []
-const selector = [0,1,2,3,4,5,6,7,8];
+const selector = [0,1,2,3,4,5,6,7,8,9,10,11];
 console.log(selector.length)
 
 //randomly choose gun doesn't work correctly 
@@ -155,6 +191,7 @@ const renderGun = () => {
     const $img = $('<img>')
     $img.attr(`src`,`${weapons[x].card}`);
     const $div = $('<div>').addClass('card').append($img);
+    $div.attr('onclick', `disappear()`)
     $('div.magazine').append($div);
     
     const $p1 = $('<p>').text(`${weapons[x].pros}`)
@@ -178,7 +215,7 @@ $button.on('click', (event) => {
    renderGun();
 });
 
-//Doesn't work
-$('div.card').on('click', (event) => {
+function disappear() {
+
     $('div.card').remove();
-});
+};
